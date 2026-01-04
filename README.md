@@ -1,90 +1,96 @@
-# Project Chimera
+# The Aletheia Framework
 
-## Neuro-Symbolic Agent Protocol (NSAP)
+### (Formerly Project Chimera)
 
-> **A Standard for Safe, Neuro-Symbolic Autonomy.**
-> A comprehensive technical standard for the design, coordination, and governance of collaborative multi-agent AI systems.
+**A Neuro-Symbolic Standard for Auditable, Self-Healing Agent Ecosystems.**
 
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
-[![Status: Draft](https://img.shields.io/badge/Status-Draft-yellow.svg)]()
-[![Version: 2.0](https://img.shields.io/badge/Version-2.0-blue.svg)]()
+([https://img.shields.io/badge/License-MIT-yellow.svg](https://www.google.com/search?q=https://img.shields.io/badge/License-MIT-yellow.svg))]([https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT))
+([https://img.shields.io/badge/Status-Experimental-red.svg](https://www.google.com/search?q=https://img.shields.io/badge/Status-Experimental-red.svg))]()
+([https://img.shields.io/badge/Architecture-Neuro--Symbolic-blueviolet.svg](https://www.google.com/search?q=https://img.shields.io/badge/Architecture-Neuro--Symbolic-blueviolet.svg))]()
 
----
-
-For the philosophy and origin story behind this architecture, see(VISION.md).
-
-## Executive Summary
-
-Project Chimera proposes a robust architecture for **Enterprise-Grade AI Autonomy**. It moves beyond the "Black Box" problem of monolithic LLMs by decomposing intelligence into a federation of specialized, auditable agents.
-
-This architecture is designed for **Safety**, **Resilience**, and **Human Control**.
-
-### Key Features
-
-*   **Glass Box Architecture:** Every decision is traceable to a specific agent.
-*   **Self-Healing Systems:** The **Diagnostician** module continuously monitors system health and automatically corrects errors, ensuring high availability and resilience.
-*   **Human-in-the-Loop (The Human Gavel):** Critical decisions and policy updates are proposed by the system but require explicit human approval before execution.
-*   **Sandboxed Execution:** All self-improvement cycles run in a secure, isolated **Digital Sandbox**, preventing unintended side effects.
+> **The Philosophy:** Current AI models are Black Boxes. Aletheia is a **Glass Box**. It separates *Generation* (The Narrator) from *Judgment* (The Philosopher) to create agents that are safe, auditable, and capable of recursive self-improvement.
+> *Read the origin story and architectural thesis in(VISION.md).*
 
 ---
 
-## Documentation
+## 🏗️ The Architecture
 
-*   **[ARCHITECTURE.md](ARCHITECTURE.md)**: High-level system diagram and component breakdown.
-*   **[SAFETY.md](SAFETY.md)**: Detailed explanation of the Safety Kernel (The Philosopher) and Human-in-the-Loop protocols.
-*   **[GLOSSARY.md](GLOSSARY.md)**: Mapping of Project Chimera terms to standard industry terminology (e.g., Domino Cascade = Event Bus).
-*   **[RFC-001: Resonance Cycle](RFCs/Draft/RFC-001-Resonance.md)**: Technical specification for the system's self-healing and optimization loop.
+Aletheia is not a single model. It is a **Multi-Agent System (MAS)** composed of specialized "Organs" that communicate via the **Domino Cascade** (Event Bus).
 
----
+### 1. The Family (Agent Roles)
 
-## The Architecture: Intelligence, Decomposed
+| Agent | Role | Function |
+| --- | --- | --- |
+| **Nexus-Mind** | Orchestrator | Strategic planning, task decomposition, and resource allocation. The "System 2" thinker. |
+| **Philosopher** | Ethical Kernel | A Neuro-Symbolic auditor that validates outputs against "Prime Directives" *before* execution. |
+| **Archivist** | Memory Core | Manages the Knowledge Graph using deterministic dependency parsing (Spacy) to prevent hallucinations. |
+| **Diagnostician** | Self-Healing | Monitors the event bus for infinite loops or failures. Triggers the **Resonance Cycle** to patch policy errors. |
+| **Narrator** | Interface | Synthesizes complex data into human-readable narrative. |
 
-Rather than relying on a single, opaque model, Chimera employs a **family of specialized agents**, each with a distinct role and auditable log.
+### 2. Core Mechanics
 
-| Role | Responsibility |
-|------|----------------|
-| **The Nexus-Mind** | **Orchestrator:** Coordinates strategy and decomposes complex tasks. |
-| **The Archivist** | **Data Integrity:** Retrieves, validates, and maintains the knowledge graph. |
-| **The Philosopher** | **Safety Kernel:** Validates every significant action against constitutional directives. |
-| **The Diagnostician** | **Observability:** Monitors system health and triggers self-healing protocols. |
-| **The Narrator** | **Interface:** Synthesizes outputs into coherent, human-readable formats. |
-| **The Visionary** | **Simulation:** Handles predictive modeling and scenario analysis. |
+#### The Domino Cascade (Event-Driven Flow)
 
-### The "Domino Cascade" (Event-Driven Workflow)
+Unlike linear chains, Aletheia agents operate asynchronously.
 
-The system operates on a deterministic, event-driven architecture. A task flows through the system as a **Domino Cascade**, where the output of one agent becomes the validated input of the next. This ensures that no step is skipped and every action is logged.
+> *Example:* `USER_INPUT` -> **Archivist** (retrieves context) -> `CONTEXT_READY` -> **Narrator** (drafts response) -> `DRAFT_READY` -> **Philosopher** (audits draft) -> `APPROVED` -> **User**.
 
-### The "Resonance Cycle" (Resilience & Optimization)
+#### The Resonance Cycle (Recursive Improvement)
 
-Instead of unchecked "evolution," Project Chimera employs a **Resonance Cycle** for controlled improvement.
-1.  **Monitor:** The system detects an inefficiency or error.
-2.  **Propose:** It generates a candidate patch or policy update.
-3.  **Verify:** The Safety Kernel simulates the update in a **Sandbox**.
-4.  **Approve:** A human administrator reviews and approves the update (**The Human Gavel**).
-5.  **Deploy:** The system heals itself and prevents future errors.
+The system does not just log errors; it learns from them.
+
+1. **Experience:** The system logs a failure (e.g., a loop or a rejected draft).
+2. **Reflection:** The Nexus-Mind analyzes the *Cascade Log*.
+3. **Mutation:** The system proposes an update to its `Operational_Policy.json`.
+4. **Verification:** The Philosopher validates the new policy.
+5. **Integration:** The agent's behavior is permanently updated.
 
 ---
 
-## Safety as Structure
+## 🚀 Getting Started
 
-Safety is not a patch; it is the foundation.
+### Prerequisites
 
-1.  **Constitutional Prime Directives**: Immutable ethical constraints encoded at the protocol level.
-2.  **Explicit Ethical Reasoning**: The Philosopher agent provides *auditable* ethical evaluation for every significant decision.
-3.  **Isolation**: Agents run in containerized environments, ensuring that a failure in one does not compromise the whole.
+* Python 3.10+
+* Spacy (`en_core_web_sm`)
+* Ollama (for local inference) or OpenAI API Key
+
+### Installationbash
+
+git clone [https://github.com/TrialBlazer23/Aletheia-Framework.git](https://www.google.com/search?q=https://github.com/TrialBlazer23/Aletheia-Framework.git)
+cd Aletheia-Framework
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+
+```
+
+### Running the Prototype
+To launch the `Nexus-Mind` console:
+```bash
+python main.py
+
+```
 
 ---
 
-## Getting Started
+## 📂 Repository Structure
 
-Project Chimera is an **open specification**. We invite engineers, architects, and ethicists to contribute to a standard where AI is transparent, auditable, and safe.
-
-*   Read the [Master Project Snapshot](Architecture/Master%20Project%20Snapshot%202.0.md) for the full vision.
-*   Review the [Safety Protocols](SAFETY.md) to understand our approach to risk mitigation.
-*   Check the [Glossary](GLOSSARY.md) to translate concepts to your preferred terminology.
+* `/core`: The Python implementation of the agents (Archivist, Philosopher, etc.).
+* `/standards`: JSON Schemas for **SDR** (Structured Data Representation).
+* `/policies`: The default "Prime Directives" and Operational Policies.
+* `/docs`: Detailed architectural diagrams and RFCs.
 
 ---
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+We are looking for architects, ethicists, and engineers to help build the **Glass Box** future.
+
+* **Engineers:** Help us refine the *Domino Cascade* event bus.
+* **Philosophers:** Help us expand the ethical rule sets for the *Philosopher* agent.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the(LICENSE) file for details.
+
+```
